@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Студент</title>
+  <!-- link:css -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+    body {
+      min-height: 75rem;
+      padding-top: 4.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Fixed navbar</a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/if.html">Умовні оператори</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <main class="container">
+    <h1>Умовні оператори</h1>
+    <div class="row">
+
+      <div class="col-md-8">
+        <div class="mb-3">
+          <label class="form-label">Вік</label>
+          <input type="text" class="form-control" id="age">
+          <!-- style="display:none" -->
+          <div class="d-none" 
+            id="alertAge">
+            Комбат
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <button 
+          type="submit" 
+          onclick="run()" 
+          class="btn btn-primary">
+            Виконати
+        </button>
+      </div>
+    </div>
+    
+  </main>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function run() {
+      //Текстове поле куди вводимо вік
+      let age = document.getElementById("age").value;
+      let message = ""; //Текст повідомлення, що буде зявлятися
+      let classInfo = "";
+      if(Number(age)<10) {
+        message = "Вік не може бути меншим 10!";
+        classInfo="alert alert-secondary";
+      }
+      //якщо вік >=10 і менше 16
+      else if(Number(age)>=10 && Number(age)<16) {
+        message = "Ви подросток, на роботу ще не візьмем!";
+        classInfo="alert alert-warning";
+      }
+      else if(Number(age)>=16 && Number(age)<60) {
+        message = "Ви нам підходите!";
+        classInfo="alert alert-success";
+      }
+      else if(Number(age)>=60) {
+        message = "Дед гляди внуків!!! :)";
+        classInfo="alert alert-info";
+      }
+      else {
+        message = "Щось вказали не так!!";
+        classInfo="alert alert-danger";
+      }
+      //Область де будемо виводити наше повідомлення
+      let alertAge=document.getElementById("alertAge");
+      alertAge.innerHTML=message;
+      alertAge.className=classInfo;
+      //alertAge.classList.remove("d-none");
+      //alertAge.classList.add(classInfo);
+    }
+  </script>
+  
+  </body>
+
+</html>
