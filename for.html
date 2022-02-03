@@ -46,7 +46,38 @@
   </nav>
   <main class="container">
     <h1>Робота із циклами</h1>
-   
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="mb-3">
+                <label class="form-label">Кількість спроб</label>
+                <input type="text" class="form-control" id="count">
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <button type="submit" onclick="run()" class="btn btn-primary">
+                Виконати
+            </button>
+        </div>
+    </div>
+
+    <div id="container"></div>
+
+
+ <script>
+    function run() {
+        let container = document.getElementById("container");
+        let i = 0; //лічильник циклу
+        let count = document.getElementById("count").value;
+        container.innerHTML="";
+        while (i < Number(count)) {
+            container.innerHTML += 
+            "<img src = 'https://cdnn21.img.ria.ru/images/153206/56/1532065676_165:0:949:588_1920x0_80_0_0_4a444bb4b02a0b87285b3717b53a62ff.jpg' width='100' >";
+            i = i + 1; //зміна лічильника цилку
+        }
+    }
+</script>
     
   </main>
   <script src="/js/bootstrap.bundle.min.js"></script>
