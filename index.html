@@ -16,37 +16,23 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Fixed navbar</a>
-          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="navbar-collapse collapse" id="navbarCollapse" style="">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/if.html">Умовні оператори</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/for.html">Цикли</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-    </nav>
+    <script>
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+          //alert(xhr.responseText);
+          document.write(xhr.responseText);
+        }
+      }
+      xhr.open('GET', 'navbar.html', false);
+      xhr.send(null);
+    </script>
 <main class="container">
 
     <!-- <h1>Привіт!</h1> -->
     <h1>Привіт козаки і козачки!</h1>
     <!-- <script src="js/index.js"></script> -->
-    <script>
+    <!-- <script>
         let danger="red";
         //let danger=56;
         let age = prompt("Скільки вам років(12+)?");
@@ -61,7 +47,7 @@
                 Заборонено віковим обмеженням ${age} БАСТА!
             </h3>`);
         }
-    </script>
+    </script> -->
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Fugiat, deleniti. Cupiditate nesciunt facilis error ipsa voluptas, 

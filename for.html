@@ -53,6 +53,11 @@
                 <label class="form-label">Кількість спроб</label>
                 <input type="text" class="form-control" id="count">
             </div>
+
+            <div class="mb-3">
+              <label class="form-label">Фото</label>
+              <input type="text" class="form-control" id="photo">
+          </div>
         </div>
     
         <div class="col-md-4">
@@ -70,10 +75,15 @@
         let container = document.getElementById("container");
         let i = 0; //лічильник циклу
         let count = document.getElementById("count").value;
+        let img = document.getElementById("photo").value;
         container.innerHTML="";
         while (i < Number(count)) {
             container.innerHTML += 
-            "<img src = 'https://cdnn21.img.ria.ru/images/153206/56/1532065676_165:0:949:588_1920x0_80_0_0_4a444bb4b02a0b87285b3717b53a62ff.jpg' width='100' >";
+            `<img src = '${img}' 
+              width='100' 
+              onclick='this.remove()' 
+              item='${i}' 
+              style="cursor: pointer">`;
             i = i + 1; //зміна лічильника цилку
         }
     }
