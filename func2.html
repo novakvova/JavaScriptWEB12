@@ -9,15 +9,33 @@
     <!-- link:css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        window.onload = load_window;
+
+        function load_window() {
+            let item = 4;
+            let idTimer = setInterval(function() {
+                document.getElementById("message").innerHTML=`До вибуху бомби залишилося ${item} секунд!`;
+                item = item -1;
+            }, 1000);
+
+            let seconds = 5000;
+            setTimeout(function() {
+                clearInterval(idTimer);
+                document.getElementById("slonimg").src="https://pbs.twimg.com/profile_images/835171049008398337/YB8jCWl0_400x400.jpg";
+            }, seconds);
+            
+        }
+    </script>
 </head>
 <!-- ctrl+K+F -->
 <body>
     <script src="js/navbar.js"></script>
     <main class="container">
-        <h1>Робота з функціями урок 2!</h1>
+        <h1 id="message">До вибуху бомби залишилося 5 секунд!</h1>
         <div>
             <img src="https://vse-krugom.ru/wp-content/uploads/2013/11/%D0%A1%D0%BB%D0%BE%D0%BD-%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0.webp"
-                alt="мій слон" width="200">
+                alt="мій слон" id="slonimg" width="200">
         </div>
         
     </main>
