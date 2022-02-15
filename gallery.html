@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея</title>
+    <!-- link:css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <script src="js/navbar.js"></script>
+    <main class="container">
+        <h1>Галерея фото</h1>
+        <script>
+            let speed=1000; //швидкість зміни фоток
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            }
+
+            let photos = [
+                "/photos/sveta.jpg",
+                "/photos/lena.jpg",
+                "/photos/masha.jpg"];
+
+            // for (let i = 0; i < 3; i++) {
+            //     let item = `<img src="${photos[i]}" width="200" alt="${photos[i]}"/>`;
+            //     document.write(item);
+            // }
+            let i = 0;
+            let idRunner = setInterval(showImage, speed);
+
+            function showImage()
+            {
+                if (i == 3)
+                    i = 0;
+                //i=getRandomInt(3);
+                let item = `<img src="${photos[i]}" width="200" alt="${photos[i]}"/>`;
+                document.getElementById("gallery").innerHTML = item;
+                i++; //i=i+1;
+            }
+
+            function changeSpeed() {
+                clearInterval(idRunner); //зупинили
+                speed=200; //змінили лічильник
+                idRunner = setInterval(showImage, speed); //знову запустили
+            }
+
+            function stopRunner() {
+                clearInterval(idRunner); //зупинили
+            }
+
+
+        </script>
+        <button onclick="changeSpeed()" class="btn btn-danger">Зміник швидкість на 200</button>
+        <button onclick="stopRunner()" class="btn btn-success">Стоп машина</button>
+
+        <div id="gallery"></div>
+
+
+    </main>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
