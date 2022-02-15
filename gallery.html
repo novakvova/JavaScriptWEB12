@@ -46,16 +46,15 @@
 
             function changeSpeed() {
                 clearInterval(idRunner); //зупинили
-                speed=200; //змінили лічильник
+                speed=Number(document.getElementById("myGirlSpeed").value); //змінили лічильник
                 idRunner = setInterval(showImage, speed); //знову запустили
             }
 
             function stopRunner() {
                 clearInterval(idRunner); //зупинили
             }
-
-
         </script>
+        <input type="number" value="1000" id="myGirlSpeed" />
         <button onclick="changeSpeed()" class="btn btn-danger">Зміник швидкість на 200</button>
         <button onclick="stopRunner()" class="btn btn-success">Стоп машина</button>
 
