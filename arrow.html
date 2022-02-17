@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стрелочні функції</title>
+    <!-- link:css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <script src="js/navbar.js"></script>
+    <main class="container">
+        <h1>Стрелочні функції</h1>
+        <script>
+            let array = [12,15,11];
+            const show = (e) => {
+                //console.log(this);
+                //console.log(e.target);
+                //e.target.innerHTML="Стрелочна функція";
+                let data="<ul>";
+                for(let i=0;i<array.length;i++)
+                {
+                    data=data+`<li>${array[i]}</li>`;
+                }
+                data+="</ul>";
+                document.getElementById("data").innerHTML=data;
+            };
+            function funcshow() {
+                //console.log(this.innerHTML);
+                this.innerHTML="Семен";
+                
+                let data="<ul>";
+                for(let i=0;i<array.length;i++)
+                {
+                    data=data+`<li>${array[i]}</li>`;
+                }
+                data+="</ul>";
+                document.getElementById("data").innerHTML=data;
+            };
+
+            //подія готовності документа
+            window.onload = function() {
+                console.log("Документ готовий");
+                document.getElementById("btnShowWindow").addEventListener('click', funcshow);
+                document.getElementById("btnShow").addEventListener('click', show);
+            }
+
+        </script>
+        <button class="btn btn-success" id="btnShow">Покзати масив</button>
+        <button class="btn btn-success" id="btnShowWindow">Покзати масив звичайна функція</button>
+        <div id="data">
+
+        </div>
+
+    </main>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
