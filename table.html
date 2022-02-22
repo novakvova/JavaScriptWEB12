@@ -17,8 +17,20 @@
   <script src="js/navbar.js"></script>
   <main class="container">
     <h1>Таблиці</h1>
-
-    <button class="btn btn-success" id="add_row">Додати рядок</button>
+    <div class="row">
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="userId" placeholder="Номер">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="userName" placeholder="ПІБ">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="userNumber" placeholder="Телефон">
+      </div>
+      <div class="col-md-3"><button class="btn btn-success" id="add_row">Додати рядок</button></div>
+    </div>
+    
+    
 
     <table class="table table-striped">
       <thead>
@@ -57,7 +69,11 @@
     window.onload = function () {
       let btnAddRow = document.getElementById("add_row");
       btnAddRow.addEventListener("click", addRow);
+      eventDeleteLoad();
+     
+    }
 
+    function eventDeleteLoad() {
       let list = document.getElementsByClassName("btnDelete");
       //console.log(list);
       for (let i = 0; i < list.length; i++) {
@@ -79,14 +95,19 @@
 
     function addRow() {
       let tbody = document.getElementById("user_tbody");
+      let userId = document.getElementById("userId");
+      let userName = document.getElementById("userName");
+      let userNumber = document.getElementById("userNumber");
       tbody.innerHTML += `
               <tr>
-                <th scope="row">#</th>
-                <td>Козак</td>
-                <td>+38фівафіафіав</td>
+                <th scope="row">${userId.value}</th>
+                <td>${userName.value}</td>
+                <td>${userNumber.value}</td>
                 <td><button class="btn btn-danger btnDelete">Видалити</button></td>
               </tr>
               `;
+
+      eventDeleteLoad();
       //console.log("Нажата кнопка :)");
     }
   </script>
