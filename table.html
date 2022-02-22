@@ -2,77 +2,94 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблиці</title>
-    <!-- link:css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Таблиці</title>
+  <!-- link:css -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 
-    <script src="js/navbar.js"></script>
-    <main class="container">
-        <h1>Таблиці</h1>
-        
-        <table class="table table-striped">
-            <thead>
+  <script src="js/navbar.js"></script>
+  <main class="container">
+    <h1>Таблиці</h1>
+
+    <button class="btn btn-success" id="add_row">Додати рядок</button>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ПІБ</th>
+          <th scope="col">Телефон</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody id="user_tbody">
+        <tr>
+          <th scope="row">1</th>
+          <td>Іван Семенович</td>
+          <td>+38097 654 52 34</td>
+          <td><button class="btn btn-danger btnDelete">Видалити 1</button></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Оксана Мельник</td>
+          <td>+38098 954 52 34</td>
+          <td><button class="btn btn-danger btnDelete">Видалити 2</button></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Світлана Пороть</td>
+          <td>+38098 342 52 34</td>
+          <td><button class="btn btn-danger btnDelete">Видалити</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    window.onload = function () {
+      let btnAddRow = document.getElementById("add_row");
+      btnAddRow.addEventListener("click", addRow);
+
+      let list = document.getElementsByClassName("btnDelete");
+      //console.log(list);
+      for (let i = 0; i < list.length; i++) {
+        list[i].addEventListener("click", deleteRow);
+      }
+    }
+
+    function deleteRow() {
+      //console.log(this);
+      //console.log(this.parentElement);
+      //console.log(this.parentElement.parentElement);
+      let tr = this.parentElement.parentElement;
+      let name = tr.children[1].innerHTML;
+      let isBoss = confirm("Ви хочете видалити " + name + "?");
+      if (isBoss) {
+        tr.remove();
+      }
+    }
+
+    function addRow() {
+      let tbody = document.getElementById("user_tbody");
+      tbody.innerHTML += `
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">ПІБ</th>
-                <th scope="col">Телефон</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Іван Семенович</td>
-                <td>+38097 654 52 34</td>
-                <td><button class="btn btn-danger btnDelete">Видалити 1</button></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Оксана Мельник</td>
-                <td>+38098 954 52 34</td>
-                <td><button class="btn btn-danger btnDelete">Видалити 2</button></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Світлана Пороть</td>
-                <td>+38098 342 52 34</td>
+                <th scope="row">#</th>
+                <td>Козак</td>
+                <td>+38фівафіафіав</td>
                 <td><button class="btn btn-danger btnDelete">Видалити</button></td>
               </tr>
-            </tbody>
-          </table>
-    </main>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        window.onload=function() {
-            let list = document.getElementsByClassName("btnDelete");
-            //console.log(list);
-            for(let i=0;i<list.length; i++)
-            {
-                list[i].addEventListener("click", deleteRow);
-            }
-        }
-
-        function deleteRow() {
-                //console.log(this);
-                //console.log(this.parentElement);
-                //console.log(this.parentElement.parentElement);
-                let tr = this.parentElement.parentElement;
-                let name = tr.children[1].innerHTML;
-                let isBoss = confirm("Ви хочете видалити "+name+"?");
-                if (isBoss) {
-                    tr.remove();
-                }
-            }
-    </script>
+              `;
+      //console.log("Нажата кнопка :)");
+    }
+  </script>
 </body>
 
 </html>
