@@ -46,19 +46,28 @@
           <th scope="row">1</th>
           <td>Іван Семенович</td>
           <td>+38097 654 52 34</td>
-          <td><button class="btn btn-danger btnDelete">Видалити 1</button></td>
+          <td>
+            <button class="btn btn-danger btnDelete">Видалити</button>
+            <button class="btn btn-primary btnEdit">Змінити</button>
+          </td>
         </tr>
         <tr>
           <th scope="row">2</th>
           <td>Оксана Мельник</td>
           <td>+38098 954 52 34</td>
-          <td><button class="btn btn-danger btnDelete">Видалити 2</button></td>
+          <td>
+            <button class="btn btn-danger btnDelete">Видалити</button>
+            <button class="btn btn-primary btnEdit">Змінити</button>
+          </td>
         </tr>
         <tr>
           <th scope="row">2</th>
           <td>Світлана Пороть</td>
           <td>+38098 342 52 34</td>
-          <td><button class="btn btn-danger btnDelete">Видалити</button></td>
+          <td>
+            <button class="btn btn-danger btnDelete">Видалити</button>
+            <button class="btn btn-primary btnEdit">Змінити</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +79,6 @@
       let btnAddRow = document.getElementById("add_row");
       btnAddRow.addEventListener("click", addRow);
       eventDeleteLoad();
-     
     }
 
     function eventDeleteLoad() {
@@ -78,6 +86,12 @@
       //console.log(list);
       for (let i = 0; i < list.length; i++) {
         list[i].addEventListener("click", deleteRow);
+      }
+
+      let listEdit = document.getElementsByClassName("btnEdit");
+      // //console.log(list);
+      for (let i = 0; i < listEdit.length; i++) {
+        listEdit[i].addEventListener("click", editRow);
       }
     }
 
@@ -93,20 +107,39 @@
       }
     }
 
+
+    function editRow() {
+      let tr = this.parentElement.parentElement;
+      let id = tr.children[0].innerHTML;
+      let name = tr.children[1].innerHTML;
+      let number = tr.children[2].innerHTML;
+      //console.log("number", number);
+      userId.value=id;
+      userName.value=name;
+      userNumber.value=number;
+    }
+
+
     function addRow() {
       let tbody = document.getElementById("user_tbody");
       let userId = document.getElementById("userId");
       let userName = document.getElementById("userName");
       let userNumber = document.getElementById("userNumber");
+      
       tbody.innerHTML += `
               <tr>
                 <th scope="row">${userId.value}</th>
                 <td>${userName.value}</td>
                 <td>${userNumber.value}</td>
-                <td><button class="btn btn-danger btnDelete">Видалити</button></td>
+                <td>
+                  <button class="btn btn-danger btnDelete">Видалити</button>
+                  <button class="btn btn-primary btnEdit">Змінити</button>
+                </td>
               </tr>
               `;
-
+      userId.value="";
+      userName.value="";
+      userNumber.value="";
       eventDeleteLoad();
       //console.log("Нажата кнопка :)");
     }
