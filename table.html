@@ -75,6 +75,9 @@
   <script src="/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    //Чи ми зараз редагуємо дані
+    let isEdit=false;
+    let tr; //рядок таблиці, який ми будемо міняти
     window.onload = function () {
       let btnAddRow = document.getElementById("add_row");
       btnAddRow.addEventListener("click", addRow);
@@ -109,7 +112,7 @@
 
 
     function editRow() {
-      let tr = this.parentElement.parentElement;
+      tr = this.parentElement.parentElement;
       let id = tr.children[0].innerHTML;
       let name = tr.children[1].innerHTML;
       let number = tr.children[2].innerHTML;
@@ -117,16 +120,31 @@
       userId.value=id;
       userName.value=name;
       userNumber.value=number;
+      isEdit=true;
+      document.getElementById("add_row").innerHTML="Зберегти";
     }
 
 
-    function addRow() {
-      let tbody = document.getElementById("user_tbody");
-      let userId = document.getElementById("userId");
-      let userName = document.getElementById("userName");
-      let userNumber = document.getElementById("userNumber");
-      
-      tbody.innerHTML += `
+      function addRow() {
+        let userId = document.getElementById("userId");
+        let userName = document.getElementById("userName");
+        let userNumber = document.getElementById("userNumber");
+        if(userName.value=="")
+        {
+          alert("Вкажіть ім'я");
+          return;
+        }
+
+        if (isEdit) {
+          tr.children[0].innerHTML=userId.value;
+          tr.children[1].innerHTML=userName.value;
+          tr.children[2].innerHTML=userNumber.value;
+          isEdit = false;
+          document.getElementById("add_row").innerHTML = "Додати рядок";
+        }
+        else {
+          let tbody = document.getElementById("user_tbody");
+          tbody.innerHTML += `
               <tr>
                 <th scope="row">${userId.value}</th>
                 <td>${userName.value}</td>
@@ -137,12 +155,14 @@
                 </td>
               </tr>
               `;
-      userId.value="";
-      userName.value="";
-      userNumber.value="";
-      eventDeleteLoad();
-      //console.log("Нажата кнопка :)");
-    }
+        }
+
+        userId.value = "";
+        userName.value = "";
+        userNumber.value = "";
+        eventDeleteLoad();
+        //console.log("Нажата кнопка :)");
+      }
   </script>
 </body>
 
