@@ -22,10 +22,10 @@
         <input type="text" class="form-control" id="userId" placeholder="Номер">
       </div>
       <div class="col-md-3">
-        <input type="text" class="form-control" id="userName" placeholder="ПІБ">
+        <input type="text" class="form-control" id="userName" placeholder="Клічка">
       </div>
       <div class="col-md-3">
-        <input type="text" class="form-control" id="userNumber" placeholder="Телефон">
+        <input type="text" class="form-control" id="userPhoto" placeholder="Фото">
       </div>
       <div class="col-md-3"><button class="btn btn-success" id="add_row">Додати рядок</button></div>
     </div>
@@ -36,8 +36,8 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">ПІБ</th>
-          <th scope="col">Телефон</th>
+          <th scope="col">Клічка</th>
+          <th scope="col">Фото</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -45,7 +45,11 @@
         <tr>
           <th scope="row">1</th>
           <td>Іван Семенович</td>
-          <td>+38097 654 52 34</td>
+          <td>
+            <img src="photos/1.jpeg" 
+              alt="Фото івана"
+              width="100">
+          </td>
           <td>
             <button class="btn btn-danger btnDelete">Видалити</button>
             <button class="btn btn-primary btnEdit">Змінити</button>
@@ -54,7 +58,11 @@
         <tr>
           <th scope="row">2</th>
           <td>Оксана Мельник</td>
-          <td>+38098 954 52 34</td>
+          <td>
+            <img src="photos/2.jpg" 
+              alt="Фото івана"
+              width="100">
+          </td>
           <td>
             <button class="btn btn-danger btnDelete">Видалити</button>
             <button class="btn btn-primary btnEdit">Змінити</button>
@@ -63,7 +71,12 @@
         <tr>
           <th scope="row">2</th>
           <td>Світлана Пороть</td>
-          <td>+38098 342 52 34</td>
+          <td>
+            
+            <img src="photos/3.jpg" 
+            alt="Фото івана"
+            width="100">
+          </td>
           <td>
             <button class="btn btn-danger btnDelete">Видалити</button>
             <button class="btn btn-primary btnEdit">Змінити</button>
@@ -115,11 +128,11 @@
       tr = this.parentElement.parentElement;
       let id = tr.children[0].innerHTML;
       let name = tr.children[1].innerHTML;
-      let number = tr.children[2].innerHTML;
+      //let number = tr.children[2].innerHTML;
       //console.log("number", number);
       userId.value=id;
       userName.value=name;
-      userNumber.value=number;
+      //userNumber.value=number;
       isEdit=true;
       document.getElementById("add_row").innerHTML="Зберегти";
     }
@@ -128,7 +141,7 @@
       function addRow() {
         let userId = document.getElementById("userId");
         let userName = document.getElementById("userName");
-        let userNumber = document.getElementById("userNumber");
+        let userPhoto = document.getElementById("userPhoto");
         if(userName.value=="")
         {
           alert("Вкажіть ім'я");
@@ -138,7 +151,12 @@
         if (isEdit) {
           tr.children[0].innerHTML=userId.value;
           tr.children[1].innerHTML=userName.value;
-          tr.children[2].innerHTML=userNumber.value;
+          tr.children[2].innerHTML=`
+                <img src="${userPhoto.value}" 
+                    alt="Фото івана"
+                    width="100">
+          `;
+          userPhoto.value;
           isEdit = false;
           document.getElementById("add_row").innerHTML = "Додати рядок";
         }
@@ -148,7 +166,11 @@
               <tr>
                 <th scope="row">${userId.value}</th>
                 <td>${userName.value}</td>
-                <td>${userNumber.value}</td>
+                <td>
+                  <img src="${userPhoto.value}" 
+                    alt="Фото івана"
+                    width="100">
+                  </td>
                 <td>
                   <button class="btn btn-danger btnDelete">Видалити</button>
                   <button class="btn btn-primary btnEdit">Змінити</button>
@@ -159,7 +181,7 @@
 
         userId.value = "";
         userName.value = "";
-        userNumber.value = "";
+        userPhoto.value = "";
         eventDeleteLoad();
         //console.log("Нажата кнопка :)");
       }
