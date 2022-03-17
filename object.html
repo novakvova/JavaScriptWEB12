@@ -25,7 +25,7 @@
             Дати сигнал
         </button>
 
-        <!-- Modal -->
+        <!-- Modal Ввід місця розташування ворожих військ -->
         <div class="modal fade" id="sendModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -57,7 +57,34 @@
             </div>
         </div>
 
+        <!-- Modal Відображає інформацію про усіх отримання інформації -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <div class="modal-body">
+                        <h2 id="messageSuccessModal"></h2>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
+
+            function showInfo(obj) {
+                console.log(obj);
+                document.getElementById("messageSuccessModal").innerHTML=`Дякуємо за ваше звернення ${obj.name} 
+                                        <br> ${obj.phone} :)`;
+                //створюємо модалку
+                let modal = new bootstrap.Modal(document.getElementById("successModal"));
+                //console.log("modal", modal);
+                //показуємо нове модальне вікно із виконанням успішної операції
+                modal.show();
+            }
+
             window.onload = function () {
                 //посилання на модалку
                 
@@ -68,10 +95,11 @@
                     ork.name= document.getElementById("userName").value;
                     ork.phone= document.getElementById("userPhone").value;
                     ork.description= document.getElementById("userDescription").value;
-                    
-                    console.log("Ork: ", ork);
 
-                    var modal = bootstrap.Modal.getInstance(document.getElementById("sendModal"));
+                    //console.log("Ork: ", ork);
+                    showInfo(ork);
+
+                    let modal = bootstrap.Modal.getInstance(document.getElementById("sendModal"));
                     modal.hide();
                 });
             }
