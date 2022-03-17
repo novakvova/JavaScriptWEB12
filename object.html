@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обєкти</title>
+    <!-- link:css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <script src="js/navbar.js"></script>
+    <main class="container">
+
+        <!-- <h1>Привіт!</h1> -->
+        <h1>Знайомство із обєктами!</h1>
+
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sendModal">
+            Дати сигнал
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="sendModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Місце знаходження рашиста</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="userName" class="form-label">Ваше ім'я</label>
+                                <input type="email" class="form-control" id="userName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="userPhone" class="form-label">Ваш телефон</label>
+                                <input type="text" class="form-control" id="userPhone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="userDescription" class="form-label">Адеса, час перебування і опис</label>
+                                <textarea rows="7" id="userDescription" class="form-control"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                        <button type="button" class="btn btn-primary" id="sendMessage">Повідомити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.onload = function () {
+                //посилання на модалку
+                
+                var sendMessage = document.getElementById("sendMessage");
+                sendMessage.addEventListener("click", function() {
+                    //alert("Нажата кнопка");
+                    let ork = {}; //Інформація про орка
+                    ork.name= document.getElementById("userName").value;
+                    ork.phone= document.getElementById("userPhone").value;
+                    ork.description= document.getElementById("userDescription").value;
+                    
+                    console.log("Ork: ", ork);
+
+                    var modal = bootstrap.Modal.getInstance(document.getElementById("sendModal"));
+                    modal.hide();
+                });
+            }
+
+            // let ivan = {}; //Зберігає якусь інформацію
+            // ivan.fullName="Мельник Іван Петрович";  //поле fullName - зберігає текст
+            // ivan.phone="+38097 654 52 34";          //поле phone - зберігає телефон
+
+            let ivan = {
+                fullName: "Мельник Іван Петрович",
+                phone: "+38097 654 52 34"
+            };
+
+            //ivan.age=18;
+            ivan["age"] = 18;
+            console.log(ivan["age"]);
+
+
+        //document.write(`<h2>${ivan.fullName}</h2>`);
+        </script>
+
+    </main>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
